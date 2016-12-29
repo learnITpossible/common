@@ -64,7 +64,7 @@ public class ExcelUtil {
                             if (DateUtil.isCellDateFormatted(cell)) {
                                 Date date = cell.getDateCellValue();
                                 if (date != null) {
-                                    value = com.domain.common.DateUtil.时分秒.format(date);
+                                    value = com.domain.common.DateUtil.formatDateTime(date);
                                 } else {
                                     value = "";
                                 }
@@ -164,7 +164,7 @@ public class ExcelUtil {
                     text = value ? "true" : "false";
                 } else if (obj instanceof Date) {
                     Date date = (Date) obj;
-                    text = com.domain.common.DateUtil.时分秒.format(date);
+                    text = com.domain.common.DateUtil.formatDateTime(date);
                 } else {
                     text = obj.toString();
                 }
