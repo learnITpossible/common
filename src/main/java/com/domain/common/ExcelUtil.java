@@ -1,5 +1,6 @@
 package com.domain.common;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -10,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -131,44 +130,8 @@ public class ExcelUtil {
             for (int column = 0; column < heads.length; column++) {
                 HSSFCell cell = row.createCell(column);
                 String property = properties[column];
-                Object obj;
-                if (t instanceof Map) {
-                    Map map = (Map) t;
-                    obj = map.get(property);
-                } else {
-                    String methodName = "get" + property.substring(0, 1).toUpperCase() + property.substring(1);
-                    Class clazz = t.getClass();
-                    Method method;
-                    try {
-                        method = clazz.getMethod(methodName);
-                    } catch (NoSuchMethodException e) {
-                        logger.warn(e.getMessage(), e);
-                        methodName = "is" + property.substring(0, 1).toUpperCase() + property.substring(1);
-                        try {
-                            method = clazz.getMethod(methodName);
-                        } catch (NoSuchMethodException e1) {
-                            logger.error(e.getMessage(), e);
-                            continue;
-                        }
-                    }
-                    try {
-                        obj = method.invoke(t);
-                    } catch (IllegalAccessException | InvocationTargetException e) {
-                        logger.error(e.getMessage(), e);
-                        continue;
-                    }
-                }
-                String text;
-                if (obj instanceof Boolean) {
-                    boolean value = (boolean) obj;
-                    text = value ? "true" : "false";
-                } else if (obj instanceof Date) {
-                    Date date = (Date) obj;
-                    text = com.domain.common.DateUtil.formatDateTime(date);
-                } else {
-                    text = obj.toString();
-                }
-                if (text != null) {
+                String text = CommonUtil.getFieldValueByName(property, t);
+                if (StringUtils.isNotEmpty(text)) {
                     Pattern p = Pattern.compile("^\\d+(\\.\\d+)?$");
                     Matcher matcher = p.matcher(text);
                     if (matcher.matches()) {
