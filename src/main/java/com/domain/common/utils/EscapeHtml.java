@@ -9,7 +9,7 @@ public class EscapeHtml {
         }
         html = html.replace("<", "&lt;");
         html = html.replace(">", "&gt;");
-        //TODO 暂时关闭单双引号转义
+        // TODO 暂时关闭单双引号转义
         // html = html.replace("\"", "&quot;");
         // html = html.replace("'", "&apos;");
         return html;

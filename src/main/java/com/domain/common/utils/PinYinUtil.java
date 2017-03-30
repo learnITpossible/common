@@ -28,7 +28,6 @@ public class PinYinUtil {
     }
 
     // 转换单个字符
-
     public static String getCharacterPinYin(char c) {
 
         String[] pinyin = null;
@@ -50,7 +49,6 @@ public class PinYinUtil {
     }
 
     // 转换一个字符串
-
     public String getStringPinYin(String str) {
 
         StringBuilder sb = new StringBuilder();

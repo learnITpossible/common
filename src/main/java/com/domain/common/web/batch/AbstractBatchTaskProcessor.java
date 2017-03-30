@@ -1,6 +1,6 @@
 package com.domain.common.web.batch;
 
-import com.domain.common.web.redis.BossJedisService;
+import com.domain.common.web.redis.JedisService;
 import com.domain.common.utils.D;
 import com.domain.common.utils.JsonHelper;
 import org.slf4j.Logger;
@@ -32,10 +32,10 @@ public abstract class AbstractBatchTaskProcessor implements ApplicationContextAw
 
     public static final int TASK_STATUS_PROGRESS = 3;
 
-    //审核中
+    // 审核中
     public static final int TASK_STATUS_AUTITING = 4;
 
-    //审核驳回
+    // 审核驳回
     public static final int TASK_STATUS_AUTI_BACK = 5;
 
     public int maxProcessor = 10;
@@ -55,7 +55,7 @@ public abstract class AbstractBatchTaskProcessor implements ApplicationContextAw
     Condition lockCondition = null;
 
     @Autowired
-    public BossJedisService jedisService;
+    public JedisService jedisService;
 
     ApplicationContext applicationContext;
 

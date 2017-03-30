@@ -52,12 +52,12 @@ public class HttpRequest {
                     httpParams.setParameter(CoreConnectionPNames.SO_TIMEOUT, SO_TIMEOUT);
                     HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
 
-                    //设置访问协议
+                    // 设置访问协议
                     SchemeRegistry schreg = new SchemeRegistry();
                     schreg.register(new Scheme("http", 80, PlainSocketFactory.getSocketFactory()));
                     schreg.register(new Scheme("https", 443, SSLSocketFactory.getSocketFactory()));
 
-                    //多连接的线程安全的管理器
+                    // 多连接的线程安全的管理器
                     PoolingClientConnectionManager pccm = new PoolingClientConnectionManager(schreg);
                     pccm.setDefaultMaxPerRoute(20); //每个主机的最大并行链接数
                     pccm.setMaxTotal(200);          //客户端总并行链接最大数

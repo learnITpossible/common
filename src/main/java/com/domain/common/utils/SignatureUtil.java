@@ -30,7 +30,7 @@ public class SignatureUtil {
 
         sb.append(secret);
         for (String name : names) {
-            sb.append("&" + name + "=");
+            sb.append("&").append(name).append("=");
             String[] paramValues = params.get(name);
             sb.append(StringUtils.join(paramValues, ","));
         }

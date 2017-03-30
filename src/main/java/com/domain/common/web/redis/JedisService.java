@@ -4,7 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
-public class BossJedisService implements InitializingBean {
+public class JedisService implements InitializingBean {
 
     // inject the actual template
     public RedisTemplate<String, String> redisTemplate;

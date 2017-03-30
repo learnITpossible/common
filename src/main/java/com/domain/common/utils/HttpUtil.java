@@ -194,7 +194,7 @@ public class HttpUtil {
             HttpResponse response;
             response = httpClient.execute(post);
             if (null == response) {  //  1.) 考虑 response 中 entity 中输入流是否存在
-                logger.error(ExecuteContext.httpByBussiness.get() + " ============> inputStream of the response is null ");
+                logger.error(ExecuteContext.httpByBusiness.get() + " ============> inputStream of the response is null ");
                 return null;
             }
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
@@ -206,7 +206,7 @@ public class HttpUtil {
             // String result = DHFEntityUtils.toString(response.getEntity());
             String result = EntityUtils.toString(response.getEntity());
             if (null == result || result.isEmpty()) {
-                logger.info(ExecuteContext.httpByBussiness.get() + " ====> getString of the response is null ");
+                logger.info(ExecuteContext.httpByBusiness.get() + " ====> getString of the response is null ");
                 return null;
             }
             return result;
@@ -298,7 +298,7 @@ public class HttpUtil {
             HttpResponse response;
             response = httpClient.execute(post);
             if (null == response) {  //  1.) 考虑 response 中 entity 中输入流是否存在
-                logger.error(ExecuteContext.httpByBussiness.get() + " ============> inputStream of the response is null ");
+                logger.error(ExecuteContext.httpByBusiness.get() + " ============> inputStream of the response is null ");
                 return null;
             }
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
@@ -310,7 +310,7 @@ public class HttpUtil {
             // String result = DHFEntityUtils.toString(response.getEntity());
             String result = EntityUtils.toString(response.getEntity());
             if (null == result || result.isEmpty()) {
-                logger.info(ExecuteContext.httpByBussiness.get() + " ====> getString of the response is null ");
+                logger.info(ExecuteContext.httpByBusiness.get() + " ====> getString of the response is null ");
                 return null;
             }
             return result;
@@ -580,7 +580,7 @@ public class HttpUtil {
             HttpResponse response;
             response = httpClient.execute(post);
             if (null == response) {  //  1.) 考虑 response 中 entity 中输入流是否存在
-                logger.error(ExecuteContext.httpByBussiness.get() + " ============> inputStream of the response is null ");
+                logger.error(ExecuteContext.httpByBusiness.get() + " ============> inputStream of the response is null ");
                 return null;
             }
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {

@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FileDownLoadUtil {
+public class FileDownLoader {
 
     private static final String REALNAME = "realName";
 
@@ -29,7 +29,7 @@ public class FileDownLoadUtil {
      * 下载
      * @param request
      * @param response
-     * @param storeName
+     * @param content
      * @param contentType
      * @param realName
      * @throws Exception
