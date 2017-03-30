@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 import java.util.Random;
 
 /**
- * com.weyao.calc.util
+ * com.utils.calc.util
  * @author Mark Li
  * @version 1.0.0
  * @since 2017/1/5

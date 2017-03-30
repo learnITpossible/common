@@ -25,6 +25,8 @@ public class DateUtil {
 
     private static final SimpleDateFormat STANDARD = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US);
 
+    private static final byte[] locker = new byte[0];
+
     public static String formatDate(Date date) {
 
         synchronized (年月日) {
@@ -34,14 +36,7 @@ public class DateUtil {
 
     public static Date parseDate(String dateStr) {
 
-        synchronized (年月日) {
-            try {
-                return 年月日.parse(dateStr);
-            } catch (ParseException e) {
-                logger.error(e.getMessage(), e);
-                return null;
-            }
-        }
+        return parse(年月日, dateStr);
     }
 
     public static String formatDateTime(Date date) {
@@ -53,9 +48,14 @@ public class DateUtil {
 
     public static Date parseDateTime(String dateStr) {
 
-        synchronized (时分秒) {
+        return parse(时分秒, dateStr);
+    }
+
+    public static Date parse(SimpleDateFormat formatter, String dateStr) {
+
+        synchronized (locker) {
             try {
-                return 时分秒.parse(dateStr);
+                return formatter.parse(dateStr);
             } catch (ParseException e) {
                 logger.error(e.getMessage(), e);
                 return null;

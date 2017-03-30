@@ -21,7 +21,7 @@ public class CommonUtil {
     /**
      * 获取对象内的属性值
      * @param fieldName 属性名称
-     * @param o 对象
+     * @param o         对象
      * @return 属性值
      */
     public static String getFieldValueByName(String fieldName, Object o) {
