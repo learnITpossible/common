@@ -1,10 +1,10 @@
 package com.domain.common.framework.support;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.FactoryBean;
  */
 public class ZookeeperFactory implements FactoryBean<CuratorFramework> {
 
-    private static final Log logger = LogFactory.getLog(ZookeeperFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZookeeperFactory.class);
 
     private String connectString;
 

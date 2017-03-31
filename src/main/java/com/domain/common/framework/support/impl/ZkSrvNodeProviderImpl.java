@@ -2,8 +2,6 @@ package com.domain.common.framework.support.impl;
 
 import com.domain.common.framework.support.SrvNodeProvider;
 import com.domain.common.framework.support.SrvNodeProviderChangeListener;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.imps.CuratorFrameworkState;
 import org.apache.curator.framework.recipes.cache.ChildData;
@@ -11,6 +9,8 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache.StartMode;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.net.InetSocketAddress;
@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class ZkSrvNodeProviderImpl implements SrvNodeProvider, InitializingBean {
 
-    private static final Log logger = LogFactory.getLog(ZkSrvNodeProviderImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZkSrvNodeProviderImpl.class);
 
     private String configPath;
 

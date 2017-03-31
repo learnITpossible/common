@@ -1,10 +1,7 @@
-/**
- *
- */
 package com.domain.common.utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +13,7 @@ import java.util.*;
  */
 public class DateUtil extends D {
 
-    private static Log log = LogFactory.getLog(DateUtil.class);
+    private static Logger log = LoggerFactory.getLogger(DateUtil.class);
 
     public static final String DATE_YEAR = "year";
 

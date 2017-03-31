@@ -1,7 +1,7 @@
 package com.domain.common.utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.*;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class HttpsRequest {
 
-    private static Log log = LogFactory.getLog(HttpsRequest.class);
+    private static Logger log = LoggerFactory.getLogger(HttpsRequest.class);
 
     private static class TrustAnyTrustManager implements X509TrustManager {
 
@@ -67,7 +67,7 @@ public class HttpsRequest {
         out.write(content.getBytes(charset));
         out.flush();
         out.close();
-        log.info(conn.getHeaderFields());
+        log.info(JsonHelper2.toJson(conn.getHeaderFields()));
         InputStream is = conn.getInputStream();
 
         if (is != null) {

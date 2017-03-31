@@ -2,8 +2,8 @@ package com.domain.common.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class SignatureUtil {
 
-    private static Log log = LogFactory.getLog(SignatureUtil.class);
+    private static Logger log = LoggerFactory.getLogger(SignatureUtil.class);
 
     public static final String ACCESS_SECRET = "secret";
 

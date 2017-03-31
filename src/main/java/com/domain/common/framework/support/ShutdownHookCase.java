@@ -1,15 +1,15 @@
 package com.domain.common.framework.support;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.curator.framework.CuratorFramework;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by ruanteng on 2015/5/8.
  */
 public class ShutdownHookCase implements Runnable {
 
-    private static final Log logger = LogFactory.getLog(ShutdownHookCase.class);
+    private static final Logger logger = LoggerFactory.getLogger(ShutdownHookCase.class);
 
     private CuratorFramework zooKeeper;
 

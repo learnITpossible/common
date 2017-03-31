@@ -3,13 +3,13 @@ package com.domain.common.framework.support.impl;
 import com.domain.common.framework.support.ShutdownHookCase;
 import com.domain.common.framework.support.SrvNodeRegister;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.imps.CuratorFrameworkState;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.framework.state.ConnectionStateListener;
 import org.apache.zookeeper.CreateMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ZkSrvNodeRegisterImpl implements SrvNodeRegister {
 
-    private static final Log logger = LogFactory.getLog(ZkSrvNodeRegisterImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZkSrvNodeRegisterImpl.class);
 
     private CuratorFramework zookeeper;
 
