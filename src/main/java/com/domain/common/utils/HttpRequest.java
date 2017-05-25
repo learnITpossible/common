@@ -1,11 +1,11 @@
 package com.domain.common.utils;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -21,12 +21,10 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,16 +61,11 @@ public class HttpRequest {
                     pccm.setMaxTotal(200);          //客户端总并行链接最大数
 
                     httpClient = new DefaultHttpClient(pccm, httpParams);
-                    ((DefaultHttpClient) httpClient).setHttpRequestRetryHandler(new HttpRequestRetryHandler() {
+                    ((DefaultHttpClient) httpClient).setHttpRequestRetryHandler((exception, executionCount, context) -> {
 
-                        @Override
-                        public boolean retryRequest(IOException exception, int executionCount,
-                                                    HttpContext context) {
-
-                            logger.debug("retry count: " + executionCount);
-                            // Do not retry if over max retry count
-                            return executionCount < 3 && exception instanceof SocketTimeoutException;
-                        }
+                        logger.debug("retry count: " + executionCount);
+                        // Do not retry if over max retry count
+                        return executionCount < 3 && exception instanceof SocketTimeoutException;
                     });
                 }
             }
@@ -82,10 +75,12 @@ public class HttpRequest {
 
     public String get(String url, Map<String, String> params, String charset) throws Exception {
 
-        List<NameValuePair> pairList = new ArrayList<NameValuePair>();
-        for (String key : params.keySet()) {
-            NameValuePair pair1 = new BasicNameValuePair(key, params.get(key));
-            pairList.add(pair1);
+        List<NameValuePair> pairList = new ArrayList<>();
+        if (MapUtils.isNotEmpty(params)) {
+            for (String key : params.keySet()) {
+                NameValuePair pair1 = new BasicNameValuePair(key, params.get(key));
+                pairList.add(pair1);
+            }
         }
 
         if (pairList.size() > 0) {

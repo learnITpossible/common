@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class JsonHelper2 {
 
-    private static Gson gson = new GsonBuilder().create();
+    private static Gson gson = new GsonBuilder().serializeNulls().create();
 
     private JsonHelper2() {
 
@@ -24,10 +24,10 @@ public class JsonHelper2 {
         return gson.toJson(obj);
     }
 
-    public static <T> T fromJson(String s, Class clasz) {
+    public static <T> T fromJson(String s, Class<T> clazz) {
 
         try {
-            return (T) gson.fromJson(s, clasz);
+            return gson.fromJson(s, clazz);
         } catch (Exception e) {
             e.printStackTrace();
         }
